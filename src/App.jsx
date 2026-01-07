@@ -1,7 +1,6 @@
 import { Fragment } from "react"
 import SideBar from "./layout/sidebar/sidebar"
-import Header from "./layout/content/content"
-import { Connect } from "vite"
+import Header from "./layout/header/header"
 import Content from "./layout/content/content"
 
 function App() {
