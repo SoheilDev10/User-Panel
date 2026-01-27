@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 @font-face {
     font-family: "iransharp";
     src: url("/src/assets/font/iransharp_regular_web.woff") format("woff");
