@@ -10,7 +10,7 @@ function SideBar() {
             setDark(false);
     }
     return (
-        <div className="h-screen flex flex-col w-72 bg-blue-400 dark:bg-gray-800 fixed z-10 shadow-xl">
+        <div className="h-screen flex flex-col w-6/12 md:w-72 bg-blue-400 dark:bg-gray-800 fixed z-10 shadow-xl">
             <div className="flex w-full justify-between p-5 bg-blue-300 dark:bg-gray-700">
                 <p className="text-white text-lg">پنل مدیریت</p>
                 <div className="rounded-full w-16 flex flex-row-reverse bg-white dark:bg-gray-900">

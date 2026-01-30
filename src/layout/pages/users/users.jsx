@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { getUsers } from "../../services/users"
-import AddUser from "../../addUser";
-import LoadData from "../../load";
 import { Outlet } from "react-router";
+import { getUsers } from "../../../services/users";
+import AddUser from "./addUser";
+import LoadData from "../../../load";
 
 function Users() {
     const [users, setUsers] = useState([]);
@@ -44,7 +44,6 @@ function Users() {
                             <td className="text-xl text-white font-bold">ایمیل</td>
                             <td className="text-xl text-white font-bold">تلفن</td>
                             <td className="text-xl text-white font-bold">وبسایت</td>
-                            <td className="text-xl text-white font-bold">عملیات</td>
                         </tr>
                     </thead>
                     <tbody className="bg-gray-200 dark:bg-gray-700">
