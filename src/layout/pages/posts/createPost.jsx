@@ -1,19 +1,27 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router"
+import { MyContext } from "../../../context";
 
 export default function CreatePost() {
     const navigate = useNavigate();
     const titleInput = useRef(null);
     const bodyInput = useRef(null);
+    const { isOpenModal, setModal } = useContext(MyContext);
+    const handleCloseModal = () => {
+        navigate("/posts");
+        setModal(false);
+    }
     useEffect(() => {
         titleInput.current.focus();
     }, [])
     return (
-        <div className="flex w-full h-screen fixed bg-black/50 backdrop-blur-sm
-        justify-center items-center z-20 inset-0">
-            <form action="#" method="get" className="w-6/12">
-                <div className="flex flex-col p-7 rounded-lg bg-white dark:bg-gray-800 gap-y-5">
-                    <button type="button" className="self-end text-2xl cursor-pointer text-red-500">
+        <div className={`flex w-full h-screen fixed bg-black/50 backdrop-blur-sm
+        justify-center z-20 inset-0 ${isOpenModal ? "items-center" : null}`} onClick={handleCloseModal}>
+            <form action="#" method="get" className="w-6/12" onClick={(e) => e.stopPropagation()}>
+                <div className={`flex flex-col p-7 rounded-lg bg-white dark:bg-gray-800 gap-y-5
+                transition-all duration-500 ${isOpenModal ? "translate-y-0" : "-translate-y-full"}`}>
+                    <button type="button" className="self-end text-2xl cursor-pointer text-red-500"
+                        onClick={handleCloseModal}>
                         <i className="fi fi-rs-circle-xmark"></i>
                     </button>
                     <h3 className="text-center text-3xl dark:text-white mb-6">افزودن پست جدید</h3>
