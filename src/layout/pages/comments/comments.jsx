@@ -2,21 +2,30 @@ import { useEffect, useState } from "react"
 import AddComment from "./addComment"
 import { getComments } from "../../../services/comments";
 import userImg from "../../../assets/images/user.png"
+import { Outlet } from "react-router";
+import LoadData from "../../../load";
 
 function Comments() {
     const [comments, setComments] = useState([]);
+    const [isLoading, setLoading] = useState(true);
     useEffect(() => {
         document.title = "مدیریت نظرات";
         const getDatas = async () => {
             const res = await getComments();
             const datas = res.slice(0, 21);
             setComments(datas);
+            if (comments)
+                setLoading(false);
         }
         getDatas();
         return () => document.title = "";
     }, [])
+
+    if (isLoading)
+        return <LoadData />
     return (
         <div className="flex flex-col p-5 w-full h-full">
+            <Outlet />
             <div className="flex w-full justify-between">
                 <h3 className="text-2xl font-bold dark:text-white">مدیریت نظرات</h3>
                 <AddComment />
