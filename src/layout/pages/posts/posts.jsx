@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { getPosts } from "../../../services/posts";
-import { data, Outlet } from "react-router";
+import { data, Outlet, useNavigate } from "react-router";
 import LoadData from "../../../load";
 import AddPost from "./addPost";
+import { MyContext } from "../../../context";
 
 function Posts() {
     const [datas, setDatas] = useState([]);
     const [isLoading, setLoading] = useState(true);
+    const { setModal } = useContext(MyContext);
+    const navigate = useNavigate();
     useEffect(() => {
         const handleGetPosts = async () => {
             const res = await getPosts();
@@ -32,7 +35,13 @@ function Posts() {
                 {datas.map(item => {
                     return (
                         <div className="flex flex-col rounded-lg shadow-lg dark:bg-gray-700
-                        cursor-pointer transition-all duration-300 hover:-translate-y-2 overflow-hidden" key={item.id}>
+                        cursor-pointer transition-all duration-300 hover:-translate-y-2 overflow-hidden"
+                            key={item.id} onClick={() => {
+                                navigate(`show-information/${item.id}`);
+                                setTimeout(() => {
+                                    setModal(true);
+                                }, 500);
+                            }}>
                             <div className="flex w-full p-3 bg-gradient-to-r from-blue-400 to-blue-600">
                                 <p className="text-white text-2xl font-bold">{item.title}</p>
                             </div>

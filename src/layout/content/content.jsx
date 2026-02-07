@@ -6,6 +6,8 @@ import Tasks from "../pages/tasks/tasks"
 import Gallery from "../pages/gallery/gallery"
 import CreateUser from "../pages/users/createUser"
 import CreatePost from "../pages/posts/createPost"
+import ShowPost from "../pages/posts/showPost"
+import ShowUser from "../pages/users/showUser"
 
 function Content() {
   return (
@@ -13,9 +15,11 @@ function Content() {
       <Routes>
         <Route path="/users" element={<Users />}>
           <Route path="add-user" element={<CreateUser />} />
+          <Route path="show-user/:userId" element={<ShowUser />} />
         </Route>
         <Route path="/posts" element={<Posts />}>
           <Route path="add-post" element={<CreatePost />} />
+          <Route path="show-information/:postId" element={<ShowPost />} />
         </Route>
         <Route path="/comments" element={<Comments />} />
         <Route path="/tasks" element={<Tasks />} />

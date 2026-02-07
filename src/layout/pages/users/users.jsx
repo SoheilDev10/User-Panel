@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
-import { Outlet } from "react-router";
+import { useContext, useEffect, useState } from "react";
+import { Outlet, useNavigate } from "react-router";
 import { getUsers } from "../../../services/users";
 import AddUser from "./addUser";
 import LoadData from "../../../load";
+import { MyContext } from "../../../context";
 
 function Users() {
     const [users, setUsers] = useState([]);
     const [isLoading, setLoading] = useState(true);
+    const { isOpenModal, setModal } = useContext(MyContext);
+    const navigate = useNavigate();
     useEffect(() => {
         const handleUsers = async () => {
             try {
@@ -49,7 +52,14 @@ function Users() {
                     <tbody className="bg-gray-200 dark:bg-gray-700">
                         {users.map(item => {
                             return (
-                                <tr key={item.id}>
+                                <tr key={item.id} className="cursor-pointer transition-all
+                                duration-300 hover:bg-gray-300 dark:hover:bg-gray-400"
+                                    onClick={() => {
+                                        navigate(`/users/show-user/${item.id}`);
+                                        setTimeout(() => {
+                                            setModal(true);
+                                        }, 500);
+                                    }}>
                                     <td className="text-md p-3 rounded-lg dark:text-white
                                      border-b-2">{item.id}</td>
                                     <td className="text-md dark:text-white
