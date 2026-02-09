@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import AddComment from "./addComment"
 import { getComments } from "../../../services/comments";
 import userImg from "../../../assets/images/user.png"
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import LoadData from "../../../load";
+import { MyContext } from "../../../context";
 
 function Comments() {
     const [comments, setComments] = useState([]);
     const [isLoading, setLoading] = useState(true);
+    const navigate = useNavigate();
+    const { setModal } = useContext(MyContext);
     useEffect(() => {
         document.title = "مدیریت نظرات";
         const getDatas = async () => {
@@ -36,7 +39,12 @@ function Comments() {
                         return (
                             <div key={item.id} className="flex rounded-lg shadow-lg cursor-pointer
                             flex-col transition-all duration-300 hover:-translate-y-2
-                            bg-white dark:bg-gray-700">
+                            bg-white dark:bg-gray-700" onClick={() => {
+                                    navigate(`/comments/show-comment/${item.id}`);
+                                    setTimeout(() => {
+                                        setModal(true);
+                                    }, 500);
+                                }}>
                                 <div className="flex items-center gap-x-2 border-b-2 p-5 dark:border-white">
                                     <img src={userImg} alt="profile" className="w-16" />
                                     <p className="text-xl dark:text-white">{item.name}</p>
