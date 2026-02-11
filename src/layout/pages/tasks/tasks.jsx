@@ -40,7 +40,12 @@ function Tasks() {
                 {tasks.map(item => {
                     return (<div key={item.id} className="flex flex-col p-5 rounded-lg bg-white shadow-lg
                     transition-all duration-300 cursor-pointer hover:-translate-y-2
-                    dark:bg-gray-700">
+                    dark:bg-gray-700" onClick={() => {
+                            navigate(`/tasks/show-task/${item.id}`);
+                            setTimeout(() => {
+                                setModal(true);
+                            }, 500);
+                        }}>
                         <p className="text-2xl dark:text-white">{item.title}</p>
                         {item.completed && <Completed />}
                         {!item.completed && <NotCompleted />}

@@ -11,6 +11,7 @@ import ShowUser from "../pages/users/showUser"
 import CreateComment from "../pages/comments/createComment"
 import ShowComment from "../pages/comments/showComment"
 import CreateTask from "../pages/tasks/createTask"
+import ShowTask from "../pages/tasks/showTask"
 
 function Content() {
   return (
@@ -30,6 +31,7 @@ function Content() {
         </Route>
         <Route path="/tasks" element={<Tasks />} >
           <Route path="add-task" element={<CreateTask />} />
+          <Route path="show-task/:taskId" element={<ShowTask />} />
         </Route>
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/" element={<Navigate to="/users" />} />
