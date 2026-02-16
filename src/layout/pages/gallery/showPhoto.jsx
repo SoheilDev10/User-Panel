@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router"
 import { MyContext } from "../../../context";
 import axios from "axios";
+import galleryImg from "../../../assets/images/gallery.png"
 
 export default function ShowPhoto() {
     const { photoId } = useParams();
@@ -21,14 +22,17 @@ export default function ShowPhoto() {
         getData();
     }, [])
     return (
-        <div className="flex fixed w-full h-screen bg-black/50 backdrop-blur-sm inset-0
-        justify-center z-20 items-center" onClick={handleCloseModal}>
-            <div className="flex flex-col rounded-lg bg-white p-5
-            dark:bg-gray-800 w-6/12" onClick={(e) => e.stopPropagation()}>
+        <div className={`flex fixed w-full h-screen bg-black/50 backdrop-blur-sm inset-0
+        justify-center z-20 ${isOpenModal ? "items-center" : null}`} onClick={handleCloseModal}>
+            <div className={`flex flex-col rounded-lg bg-white p-5
+            dark:bg-gray-800 w-6/12 transition-all duration-500
+             ${isOpenModal ? "translate-y-0" : "-translate-y-full"}`}
+                onClick={(e) => e.stopPropagation()}>
                 <button type="button" className="text-2xl text-red-500 cursor-pointer self-end"
                     onClick={handleCloseModal}>
                     <i className="fi fi-rs-circle-xmark"></i>
                 </button>
+                <img src={galleryImg} alt="gallery" className="w-32 self-center" />
                 <h3 className="text-3xl text-center font-bold dark:text-white mb-6">اطلاعات عکس</h3>
                 <div className="flex gap-x-2">
                     <p className="text-xl text-blue-500">عنوان عکس:</p>

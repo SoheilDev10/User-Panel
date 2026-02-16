@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useNavigate } from "react-router"
+import { Navigate, Route, Routes } from "react-router"
 import Users from "../pages/users/users"
 import Posts from "../pages/posts/posts"
 import Comments from "../pages/comments/comments"
@@ -14,6 +14,7 @@ import CreateTask from "../pages/tasks/createTask"
 import ShowTask from "../pages/tasks/showTask"
 import CreatePhoto from "../pages/gallery/createPhoto"
 import ShowPhoto from "../pages/gallery/showPhoto"
+import Error404 from "../pages/error404"
 
 function Content() {
   return (
@@ -25,7 +26,7 @@ function Content() {
         </Route>
         <Route path="/posts" element={<Posts />}>
           <Route path="add-post" element={<CreatePost />} />
-          <Route path="show-information/:postId" element={<ShowPost />} />
+          <Route path="show-post/:postId" element={<ShowPost />} />
         </Route>
         <Route path="/comments" element={<Comments />}>
           <Route path="add-comment" element={<CreateComment />} />
@@ -40,6 +41,7 @@ function Content() {
           <Route path="show-photo/:photoId" element={<ShowPhoto />} />
         </Route>
         <Route path="/" element={<Navigate to="/users" />} />
+        <Route path="*" element={<Error404 />} />
       </Routes>
     </div>
   )

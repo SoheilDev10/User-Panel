@@ -37,7 +37,7 @@ function Posts() {
                         <div className="flex flex-col rounded-lg shadow-lg dark:bg-gray-700
                         cursor-pointer transition-all duration-300 hover:-translate-y-2 overflow-hidden"
                             key={item.id} onClick={() => {
-                                navigate(`show-information/${item.id}`);
+                                navigate(`show-post/${item.id}`);
                                 setTimeout(() => {
                                     setModal(true);
                                 }, 500);
