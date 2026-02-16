@@ -8,7 +8,7 @@ import LoadData from "../../../load";
 function Gallery() {
     const [photos, setPhotos] = useState([]);
     const navigate = useNavigate();
-    const { isOpenModal, setModal } = useContext(MyContext);
+    const { setModal } = useContext(MyContext);
     const [isLoading, setLoading] = useState(true);
     useEffect(() => {
         document.title = "مدیریت گالری";
@@ -38,7 +38,13 @@ function Gallery() {
                 {photos.map(item => {
                     return (
                         <div key={item.id} className="flex flex-col rounded-lg bg-white cursor-pointer shadow-lg
-                        transition-all duration-300 dark:bg-gray-700 hover:-translate-y-2 overflow-hidden">
+                        transition-all duration-300 dark:bg-gray-700 hover:-translate-y-2 overflow-hidden"
+                            onClick={() => {
+                                navigate(`/gallery/show-photo/${item.id}`);
+                                setTimeout(() => {
+                                    setModal(true);
+                                }, 500);
+                            }}>
                             <div className="flex p-5">
                                 <p className="text-2xl dark:text-white">{item.title}</p>
                             </div>

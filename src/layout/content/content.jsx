@@ -13,6 +13,7 @@ import ShowComment from "../pages/comments/showComment"
 import CreateTask from "../pages/tasks/createTask"
 import ShowTask from "../pages/tasks/showTask"
 import CreatePhoto from "../pages/gallery/createPhoto"
+import ShowPhoto from "../pages/gallery/showPhoto"
 
 function Content() {
   return (
@@ -36,6 +37,7 @@ function Content() {
         </Route>
         <Route path="/gallery" element={<Gallery />}>
           <Route path="add-photo" element={<CreatePhoto />} />
+          <Route path="show-photo/:photoId" element={<ShowPhoto />} />
         </Route>
         <Route path="/" element={<Navigate to="/users" />} />
       </Routes>
