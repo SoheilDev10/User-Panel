@@ -10,7 +10,7 @@ import LoadData from "../../../load";
 function Tasks() {
     const [tasks, setTasks] = useState([]);
     const navigate = useNavigate();
-    const { isOpenModal, setModal } = useContext(MyContext);
+    const { setModal } = useContext(MyContext);
     const [isLoading, setLoading] = useState(true);
     useEffect(() => {
         document.title = "مدیریت وظایف";
